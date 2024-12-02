@@ -40,7 +40,7 @@ if 'user_name' not in st.session_state:
 # Function to display the quiz
 def display_quiz():
     st.write(f"Answer this, {st.session_state.user_name}!")
-    st.write(f"Consecutive correct answers: {st.session_state.consecutive_correct}")
+    st.write(f"correct answer given=: {st.session_state.consecutive_correct}")
     
     question_data = questions[st.session_state.current_question]
     st.write(f"Question {st.session_state.current_question + 1}: {question_data['question']}")

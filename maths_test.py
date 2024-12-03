@@ -35,7 +35,6 @@ questions = [
     {"question": "What is 9 x 3?\n(options: 24, 25, 26, 27)", "answer": "27"},
     {"question": "What is 16 / 2?\n(options: 6, 7, 8, 9)", "answer": "8"},
     {"question": "What is the square root of 49?\n(options: 6, 7, 8, 9)", "answer": "7"},
-    {"question": "What is 15 % 4?\n(options: 1, 2, 3, 4)", "answer": "3"},
     {"question": "What is 2^5?\n(options: 30, 31, 32, 33)", "answer": "32"},
     {"question": "What is the cube root of 27?\n(options: 2, 3, 4, 5)", "answer": "3"},
     {"question": "What is 10 + 10 x 2?\n(options: 20, 25, 30, 35)", "answer": "30"},  # Order of operations

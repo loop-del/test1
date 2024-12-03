@@ -18,12 +18,21 @@ def save_leaderboard(data):
     with open(LEADERBOARD_FILE, "w") as f:
         json.dump(data, f)
 
+# Clear the leaderboard
+def clear_leaderboard():
+    with open(LEADERBOARD_FILE, "w") as f:
+        json.dump([], f)
+
 # Update the leaderboard
 def update_leaderboard(name, score):
     leaderboard = load_leaderboard()
     leaderboard.append({"name": name, "score": score})
     leaderboard = sorted(leaderboard, key=lambda x: x["score"], reverse=True)[:10]  # Keep top 10
     save_leaderboard(leaderboard)
+
+# Initialize session state variables for leaderboard title
+if 'leaderboard_title' not in st.session_state:
+    st.session_state.leaderboard_title = "Leaderboard"
 
 # Title of the app
 st.markdown("<h1 style='text-align: center; color: brown;'>Arjun, complete all questions for a chocolate!</h1>", unsafe_allow_html=True)
@@ -58,10 +67,16 @@ if 'user_name' not in st.session_state:
 
 # Function to display the quiz
 def display_quiz():
-    st.sidebar.markdown("<h2 style='color: green; font-family: Impact; font-size: 30px;'>Leader_board</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown(f"<h2 style='color: green; font-family: Impact; font-size: 30px;'>{st.session_state.leaderboard_title}</h2>", unsafe_allow_html=True)
     leaderboard = load_leaderboard()
     for entry in leaderboard:
         st.sidebar.markdown(f"<p style='color: white; font-family: Ink Free; font-size: 20px;'>{entry['name']}: {entry['score']}</p>", unsafe_allow_html=True)
+
+    if st.sidebar.button("Clear Leaderboard"):
+        clear_leaderboard()
+        st.experimental_rerun()
+
+    st.sidebar.text_input("Edit Leaderboard Title:", key="leaderboard_title")
 
     st.write(f"Answer this, {st.session_state.user_name}!")
     st.write(f"Correct answers provided by you: {st.session_state.consecutive_correct}")

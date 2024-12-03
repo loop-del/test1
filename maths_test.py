@@ -2,28 +2,28 @@ import streamlit as st
 import json
 import os
 
-# Initialize the leaderboard file
-LEADERBOARD_FILE = "leaderboard.json"
-if not os.path.exists(LEADERBOARD_FILE):
-    with open(LEADERBOARD_FILE, "w") as f:
+# Initialize the player file
+player_FILE = "player.json"
+if not os.path.exists(player_FILE):
+    with open(player_FILE, "w") as f:
         json.dump([], f)
 
-# Load the leaderboard
-def load_leaderboard():
-    with open(LEADERBOARD_FILE, "r") as f:
+# Load the player
+def load_player():
+    with open(player_FILE, "r") as f:
         return json.load(f)
 
-# Save the leaderboard
-def save_leaderboard(data):
-    with open(LEADERBOARD_FILE, "w") as f:
+# Save the player
+def save_player(data):
+    with open(player_FILE, "w") as f:
         json.dump(data, f)
 
-# Update the leaderboard
-def update_leaderboard(name, score):
-    leaderboard = load_leaderboard()
-    leaderboard.append({"name": name, "score": score})
-    leaderboard = sorted(leaderboard, key=lambda x: x["score"], reverse=True)[:10]  # Keep top 10
-    save_leaderboard(leaderboard)
+# Update the player
+def update_player(name, score):
+    player = load_player()
+    player.append({"name": name, "score": score})
+    player = sorted(player, key=lambda x: x["score"], reverse=True)[:10]  # Keep top 10
+    save_player(player)
 
 # Title of the app
 st.markdown("<h1 style='text-align: center; color: brown;'>Arjun, complete all questions for a chocolate!</h1>", unsafe_allow_html=True)
@@ -58,9 +58,9 @@ if 'user_name' not in st.session_state:
 
 # Function to display the quiz
 def display_quiz():
-    st.sidebar.markdown("<h2 style='color: green; font-family: Impact; font-size: 30px;'>Leader_board</h2>", unsafe_allow_html=True)
-    leaderboard = load_leaderboard()
-    for entry in leaderboard:
+    st.sidebar.markdown("<h2 style='color: green; font-family: Impact; font-size: 30px;'>defeat _he_first_one</h2>", unsafe_allow_html=True)
+    player = load_player()
+    for entry in player:
         st.sidebar.markdown(f"<p style='color: white; font-family: Ink Free; font-size: 20px;'>{entry['name']}: {entry['score']}</p>", unsafe_allow_html=True)
 
     st.write(f"Answer this, {st.session_state.user_name}!")
@@ -83,12 +83,12 @@ def display_quiz():
                 st.balloons()
                 st.success(f"Quiz completed! Your score is {st.session_state.score}/{len(questions)}")
                 st.write(f"Consecutive correct answers: {st.session_state.consecutive_correct}")
-                update_leaderboard(st.session_state.user_name, st.session_state.consecutive_correct)
+                update_player(st.session_state.user_name, st.session_state.consecutive_correct)
                 if st.button("Restart Quiz", key="restart_button"):
                     restart_quiz()
         else:
             st.error("Incorrect!")
-            update_leaderboard(st.session_state.user_name, st.session_state.consecutive_correct)
+            update_player(st.session_state.user_name, st.session_state.consecutive_correct)
             restart_quiz()
 
 # Function to restart the quiz

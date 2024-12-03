@@ -58,7 +58,7 @@ if 'user_name' not in st.session_state:
 
 # Function to display the quiz
 def display_quiz():
-    st.sidebar.markdown("<h2 style='color: gray; font-family: Impact; font-size: 30px;'>defeat _the_first_one</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h2 style='color: brown; font-family: MV Boli; font-size: 30px;'>defeat _the_first_one</h2>", unsafe_allow_html=True)
     player = load_player()
     for entry in player:
         st.sidebar.markdown(f"<p style='color: white; font-family: Ink Free; font-size: 20px;'>{entry['name']}: {entry['score']}</p>", unsafe_allow_html=True)

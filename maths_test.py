@@ -29,7 +29,7 @@ def update_player(name, score):
 # Title of the app
 st.markdown("<h1 style='text-align: center; color: brown;'>Arjun, complete all questions for a chocolate!</h1>", unsafe_allow_html=True)
 
-# List of math and GK questions
+# List of math questions
 questions = [
     # Math Questions
     {"question": "What is 5 + 3?\n(options: 6, 7, 8, 9)", "answer": "8"},
@@ -37,13 +37,38 @@ questions = [
     {"question": "What is 9 x 3?\n(options: 24, 25, 26, 27)", "answer": "27"},
     {"question": "What is 16 / 2?\n(options: 6, 7, 8, 9)", "answer": "8"},
     {"question": "What is 4! (factorial)?\n(options: 20, 22, 24, 26)", "answer": "24"},
-    
-    # GK Questions
-    {"question": "What is the capital of France?\n(options: Berlin, Paris, Madrid, Rome)", "answer": "Paris"},
-    {"question": "Which planet is known as the Red Planet?\n(options: Earth, Mars, Venus, Jupiter)", "answer": "Mars"},
-    {"question": "What is the largest mammal in the world?\n(options: Elephant, Whale, Shark, Bear)", "answer": "Whale"},
-    {"question": "Who wrote 'Romeo and Juliet'?\n(options: Shakespeare, Dickens, Orwell, Austen)", "answer": "Shakespeare"},
-    {"question": "What is the currency of Japan?\n(options: Yen, Dollar, Euro, Pound)", "answer": "Yen"},
+    {"question": "What is the square root of 144?\n(options: 10, 11, 12, 13)", "answer": "12"},
+    {"question": "What is 15 + 27?\n(options: 40, 41, 42, 43)", "answer": "42"},
+    {"question": "What is 81 / 9?\n(options: 7, 8, 9, 10)", "answer": "9"},
+    {"question": "What is 7 x 7?\n(options: 48, 49, 50, 51)", "answer": "49"},
+    {"question": "What is the cube of 3?\n(options: 26, 27, 28, 29)", "answer": "27"},
+    {"question": "What is 10^2?\n(options: 50, 75, 90, 100)", "answer": "100"},
+    {"question": "What is 64 - 9?\n(options: 54, 55, 56, 57)", "answer": "55"},
+    {"question": "What is the square root of 121?\n(options: 9, 10, 11, 12)", "answer": "11"},
+    {"question": "What is 25 x 4?\n(options: 75, 80, 85, 90)", "answer": "100"},
+    {"question": "What is 81 - 26?\n(options: 54, 55, 56, 57)", "answer": "55"},
+    {"question": "What is 6 x 6?\n(options: 35, 36, 37, 38)", "answer": "36"},
+    {"question": "What is 45 / 5?\n(options: 8, 9, 10, 11)", "answer": "9"},
+    {"question": "What is 9^2?\n(options: 79, 80, 81, 82)", "answer": "81"},
+    {"question": "What is 13 + 28?\n(options: 40, 41, 42, 43)", "answer": "41"},
+    {"question": "What is 4 x 5?\n(options: 20, 21, 22, 23)", "answer": "20"},
+    {"question": "What is the square root of 81?\n(options: 8, 9, 10, 11)", "answer": "9"},
+    {"question": "What is 72 / 8?\n(options: 7, 8, 9, 10)", "answer": "9"},
+    {"question": "What is 8 x 7?\n(options: 55, 56, 57, 58)", "answer": "56"},
+    {"question": "What is 55 - 11?\n(options: 43, 44, 45, 46)", "answer": "44"},
+    {"question": "What is the cube root of 27?\n(options: 2, 3, 4, 5)", "answer": "3"},
+    {"question": "What is 6 x 8?\n(options: 46, 47, 48, 49)", "answer": "48"},
+    {"question": "What is 100 / 4?\n(options: 23, 24, 25, 26)", "answer": "25"},
+    {"question": "What is 9 - 5?\n(options: 3, 4, 5, 6)", "answer": "4"},
+    {"question": "What is 18 x 2?\n(options: 34, 35, 36, 37)", "answer": "36"},
+    {"question": "What is 3^3?\n(options: 26, 27, 28, 29)", "answer": "27"},
+    {"question": "What is 20 + 15?\n(options: 33, 34, 35, 36)", "answer": "35"},
+    {"question": "What is 45 - 15?\n(options: 28, 29, 30, 31)", "answer": "30"},
+    {"question": "What is 7 x 8?\n(options: 54, 55, 56, 57)", "answer": "56"},
+    {"question": "What is 12 x 12?\n(options: 142, 143, 144, 145)", "answer": "144"},
+    {"question": "What is 144 / 12?\n(options: 11, 12, 13, 14)", "answer": "12"},
+    {"question": "What is the square root of 225?\n(options: 14, 15, 16, 17)", "answer": "15"},
+    {"question": "What is 27 - 10?\n(options: 16, 17, 18, 19)", "answer": "17"}
 ]
 
 # Initialize session state variables
@@ -91,19 +116,3 @@ def display_quiz():
         else:
             st.error("Incorrect!")
             update_player(st.session_state.user_name, st.session_state.consecutive_correct)
-            restart_quiz()
-
-# Function to restart the quiz
-def restart_quiz():
-    st.session_state.shuffled_questions = random.sample(questions, len(questions))
-    st.session_state.current_question = 0
-    st.session_state.score = 0
-    st.session_state.consecutive_correct = 0
-
-# Input for user's name
-if st.session_state.user_name == '':
-    st.session_state.user_name = st.text_input("Enter your name:", key="name")
-
-# Display the quiz if the user's name is provided
-if st.session_state.user_name:
-    display_quiz()

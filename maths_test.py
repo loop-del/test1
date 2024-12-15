@@ -112,7 +112,7 @@ def display_quiz():
                 st.write(f"Consecutive correct answers: {st.session_state.consecutive_correct}")
                 update_player(st.session_state.user_name, st.session_state.consecutive_correct)
                 if st.button("Restart Quiz", key="restart_button"):
-                    restart_quiz()
+                    "restart_quiz"()
         else:
             st.error("Incorrect!")
             update_player(st.session_state.user_name, st.session_state.consecutive_correct)
